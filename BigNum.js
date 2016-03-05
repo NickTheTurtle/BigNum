@@ -1,4 +1,4 @@
-(function () {
+;(function () {
   var formatNum = function (string1) {
     if (typeof string1 !== "string") {
       throw new Error("Number is invalid");
@@ -29,7 +29,7 @@
     if (string1.startsWith(".")) {
       string1 = "0" + string1;
     } else if (string1.startsWith("-.")) {
-      string1 = "-0" + string1.replace("-", "")
+      string1 = "-0" + string1.replace("-", "");
     }
     if (string1.indexOf(".") !== -1) {
       for (var i = string1.length - 1; i > -1; i --) {
@@ -94,8 +94,8 @@
             array1[0] += "0" + array1[0];
           }
         }
-        var string1 = array1.join(".");
-        var string2 = array2.join(".");
+        string1 = array1.join(".");
+        string2 = array2.join(".");
         for (var i = 0; i < string1.length; i ++) {
           if (string1[i] !== ".") {
             if (parseInt(string1[i]) > parseInt(string2[i])) {
@@ -210,7 +210,7 @@
         return new BigNum("-" + add(string1.replace("-", ""), string2.replace("-", "")).value);
       }
     } else {
-      throw new Error("Number is invalid")
+      throw new Error("Number is invalid");
     }
   };
   var subtract = function (string1, string2) {
@@ -278,7 +278,7 @@
         return subtract(string2.replace("-", ""), string1.replace("-", ""));
       }
     } else {
-      throw new Error("Number is invalid")
+      throw new Error("Number is invalid");
     }
   };
   var multiply = function (string1, string2) {
@@ -322,7 +322,7 @@
         return multiply(string1.replace("-", ""), string2.replace("-", ""));
       }
     } else {
-      throw new Error("Number is invalid")
+      throw new Error("Number is invalid");
     }
   };
   var multiplySmallInt = function (string1, string2) {
@@ -351,7 +351,7 @@
       var aimedAccuracy = add(accuracy, "2");
       if (string1[0] !== "-" && string2[0] !== "-") {
         if (string2 === "0") {
-          throw new Error("Division by zero")
+          throw new Error("Division by zero");
         }
         if (string2 === "1") {
           return roundNum(string1, accuracy);
@@ -389,7 +389,7 @@
         return divide(string1.replace("-", ""), string2.replace("-", ""), accuracy);
       }
     } else {
-      throw new Error("Number is invalid")
+      throw new Error("Number is invalid");
     }
   };
   var power = function (string1, string2, accuracy) {
@@ -414,43 +414,47 @@
           return multiply(string1, string1).power(subtract(string2, "1").multiply("0.5")).multiply(string1);
         }
       } else {
-        throw new Error("Power function only supports positive integers for exponents")
+        throw new Error("Power function only supports positive integers for exponents");
       }
-    } else {
-      throw new Error("Number is invalid")
-    }
-  }
-  BigNum = function (string1) {
-    string1 = formatNum(string1.value ? string1.value : string1);
-    if (isNum(string1)) {
-      this.value = string1;
-      this.add = function (string1) {
-        this.value = add(this.value, string1).value;
-        return this;
-      };
-      this.subtract = function (string1) {
-        this.value = subtract(this.value, string1).value;
-        return this;
-      };
-      this.multiply = function (string1) {
-        this.value = multiply(this.value, string1).value;
-        return this;
-      };
-      this.divide = function (string1, accuracy) {
-        this.value = divide(this.value, string1, accuracy).value;
-        return this;
-      };
-      this.power = function (string1, string2) {
-        this.value = power(this.value, string1, string2).value;
-        return this;
-      };
-      this.round = function (string1) {
-        this.value = roundNum(this.value, string1).value;
-        return this;
-      }
-      return this;
     } else {
       throw new Error("Number is invalid");
+    }
+  };
+  BigNum = function (string1) {
+    string1 = formatNum(string1.value ? string1.value : string1);
+    if (this instanceof BigNum) {
+      if (isNum(string1)) {
+        this.value = string1;
+        this.add = function (string1) {
+          this.value = add(this.value, string1).value;
+          return this;
+        };
+        this.subtract = function (string1) {
+          this.value = subtract(this.value, string1).value;
+          return this;
+        };
+        this.multiply = function (string1) {
+          this.value = multiply(this.value, string1).value;
+          return this;
+        };
+        this.divide = function (string1, accuracy) {
+          this.value = divide(this.value, string1, accuracy).value;
+          return this;
+        };
+        this.power = function (string1, string2) {
+          this.value = power(this.value, string1, string2).value;
+          return this;
+        };
+        this.round = function (string1) {
+          this.value = roundNum(this.value, string1).value;
+          return this;
+        };
+        return this;
+      } else {
+        throw new Error("Number is invalid");
+      }
+    } else {
+      throw new Error("Expected \"new\" constructer keyword");
     }
   };
   BigNum.add = add;
@@ -468,7 +472,7 @@
     } else {
       return new BigNum(string1);
     }
-  }
+  };
   BigNum.format = formatNum;
   BigNum.isNum = isNum;
   BigNum.isInt = isInt;
