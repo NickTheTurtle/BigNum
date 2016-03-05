@@ -48,14 +48,12 @@
     }
   };
   var isNum = function (string1) {
-    string1 = formatNum(string1.value ? string1.value : string1);
     if (typeof string1 !== "string") {
       throw new Error("Number is invalid");
     }
     return (new RegExp(/^-*\d*(\.)?\d*$/)).test(string1);
   };
   var isInt = function (string1) {
-    string1 = formatNum(string1.value ? string1.value : string1);
     if (typeof string1 !== "string") {
       throw new Error("Number is invalid");
     }
@@ -403,7 +401,7 @@
       }
       if (isInt(string2)) {
         if (string2[0] === "-") {
-          return divide("1", power(string1, string2.replace("-", "")), accuracy);
+          return divide("1", power(string1, string2.replace("-", ""), accuracy), accuracy);
         } else if (string2 === "0") {
           return new BigNum("1");
         } else if (string2 === "1") {
