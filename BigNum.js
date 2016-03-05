@@ -440,8 +440,8 @@
         this.value = divide(this.value, string1, accuracy).value;
         return this;
       };
-      this.power = function (string1) {
-        this.value = power(this.value, string1).value;
+      this.power = function (string1, string2) {
+        this.value = power(this.value, string1, string2).value;
         return this;
       };
       this.round = function (string1) {
