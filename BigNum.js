@@ -48,12 +48,14 @@
     }
   };
   var isNum = function (string1) {
+    string1 = (string1.value ? string1.value : string1);
     if (typeof string1 !== "string") {
       throw new Error("Number is invalid");
     }
     return (new RegExp(/^-*\d*(\.)?\d*$/)).test(string1);
   };
   var isInt = function (string1) {
+    string1 = (string1.value ? string1.value : string1);
     if (typeof string1 !== "string") {
       throw new Error("Number is invalid");
     }
