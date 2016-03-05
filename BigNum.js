@@ -403,7 +403,7 @@
       }
       if (isInt(string2)) {
         if (string2[0] === "-") {
-          return divide("1", power(string1, string2.replace("-", ""), accuracy), accuracy);
+          return divide("1", power(string1, string2.replace("-", "")), accuracy);
         } else if (string2 === "0") {
           return new BigNum("1");
         } else if (string2 === "1") {
