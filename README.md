@@ -77,7 +77,7 @@ console.log(b.value); //will return "0.3"
 <br />
 
 <code>
-  d.divide("9.8765", "20");//divide 135938091850180895012598102598102958 by 9.8765 with 30 digits after the decimal place
+  d.divide("9.8765", "30");//divide 135938091850180895012598102598102958 by 9.8765 with 30 digits after the decimal place
 </code>
 
 <code>
