@@ -1,5 +1,5 @@
 # BigNum
-Javascript library to calculate big numbers with indefinite accuracy.
+Javascript library for basic operations on big numbers with indefinite accuracy. Allows more accuracy than Javascript's 15 digits and a larger range than ±10^307.
 
 ## Examples
 Define a number simply like this:
