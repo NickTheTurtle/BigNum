@@ -118,7 +118,7 @@ console.log(a.value);
 BigNum currently has six different operators on BigNum's (add, subtract, multiply, divide, power, and round) and eleven helper functions (add, subtract, multiply, divide, power, round, max, min, format, isNum, isInt). Please note that huge or lengthy values for the parameters will slow the browser.
 
 ### Operators
-The operators of add, subtract, multiply, divide, and round accept one argument and operates it on the stored BitNum value. Divide and power accept two parameters. The second parameter specifies the number of digits (in string format) to round after the decimal (the default is "0"). Note that the power operation function currently only accept integer values for the exponents.
+The operators of add, subtract, multiply, divide, and round accept one argument and operates it on the stored BitNum value. Divide and power accept two parameters. The second parameter specifies the number of digits (in string format) to round after the decimal (the default is "0"). Note that the power operation function currently only accept integer values for the exponents and rounds to the specified number of decimals if and only if the exponent is negative.
 
 <code>
 var a = new BigNum("3.2");
