@@ -403,15 +403,15 @@
       }
       if (isInt(string2)) {
         if (string2[0] === "-") {
-          return divide("1", power(string1, string2.replace("-", ""), accuracy), accuracy);
+          return divide("1", power(string1, string2.replace("-", "")), accuracy);
         } else if (string2 === "0") {
           return new BigNum("1");
         } else if (string2 === "1") {
-          return roundNum(new BigNum(string1), accuracy);
+          return new BigNum(string1);
         } else if ((new RegExp(/[02468]$/)).test(string2)) {
-          return multiply(string1, string1).power(multiply(string2, "0.5"), accuracy);
+          return multiply(string1, string1).power(multiply(string2, "0.5"));
         } else {
-          return roundNum(multiply(string1, string1).power(subtract(string2, "1").multiply("0.5"), accuracy).multiply(string1), accuracy);
+          return multiply(string1, string1).power(subtract(string2, "1").multiply("0.5")).multiply(string1);
         }
       } else {
         throw new Error("Power function only supports positive integers for exponents");
