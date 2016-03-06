@@ -367,7 +367,7 @@
               string1 = formatNum(string1.substr(0, string1.indexOf(".")) + string1[string1.indexOf(".") + 1] + "." + string1.substr(string1.indexOf(".") + 2, string1.length));
             }
           }
-          string2 = string2.replace(".", "");
+          string2 = formatNum(string2.replace(".", ""));
         }
         var guess = new BigNum((1 / parseInt(string2.substr(0, 5))).toPrecision(21));
         var array2 = string2.split(".");
@@ -377,7 +377,7 @@
         for (var i = 0; i < 10000; i ++) {
           var newGuess = multiply("-" + string2, guess).add("2").multiply(guess);
           if (roundNum(multiply(guess, string1), aimedAccuracy).value === roundNum(multiply(newGuess, string1), aimedAccuracy).value) {
-            return roundNum(roundNum(multiply(string1, newGuess), aimedAccuracy), accuracy);
+            return roundNum(multiply(string1, newGuess), accuracy);
           } else {
             guess = newGuess;
           }
@@ -403,15 +403,15 @@
       }
       if (isInt(string2)) {
         if (string2[0] === "-") {
-          return divide("1", power(string1, string2.replace("-", "")), accuracy);
+          return divide("1", power(string1, string2.replace("-", ""), accuracy), accuracy);
         } else if (string2 === "0") {
           return new BigNum("1");
         } else if (string2 === "1") {
-          return new BigNum(string1);
+          return roundNum(new BigNum(string1), accuracy);
         } else if ((new RegExp(/[02468]$/)).test(string2)) {
-          return multiply(string1, string1).power(multiply(string2, "0.5"));
+          return multiply(string1, string1).power(multiply(string2, "0.5"), accuracy);
         } else {
-          return multiply(string1, string1).power(subtract(string2, "1").multiply("0.5")).multiply(string1);
+          return roundNum(multiply(string1, string1).power(subtract(string2, "1").multiply("0.5"), accuracy).multiply(string1), accuracy);
         }
       } else {
         throw new Error("Power function only supports positive integers for exponents");
